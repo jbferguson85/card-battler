@@ -26,9 +26,29 @@ function getElement(color: string): string {
     }
 }
 
-export function makeCard(k: KaboomCtx, card: Card) {
-    const c = k.add([
-        k.rect(48, 78),
+function newCard(): Card {
+    const colors: Color[] = [
+        {name: "red", value: "#b3101b"},
+        {name: "blue", value: "#0c3dad"},
+        {name: "green", value: "#4ca82d"},
+        {name: "brown", value: "#473429"},
+    ];
+
+    const power = Math.floor(Math.random() * 10) + 1;
+    const colorIndex = Math.floor(Math.random() * 4);
+
+    return {
+        power,
+        color: colors[colorIndex] 
+    }
+}
+
+export function makeCard(k: KaboomCtx) {
+    const card = newCard();
+    const c = k.make([
+        k.rect(46 * scale, 74 * scale),
+        k.pos(k.width() * 0.5, k.height() * 0.5),
+        k.anchor("center"),
         k.color(k.Color.fromHex(card.color.value)),
         {
             power: card.power,

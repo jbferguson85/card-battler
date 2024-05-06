@@ -1,4 +1,4 @@
-import { Card, makeDrawButton } from "./entities";
+import { Card, makeCard, makeDrawButton } from "./entities";
 import { k } from "./kaboomCtx"
 import { globalState } from "./state";
 
@@ -10,7 +10,7 @@ async function setupGame() {
     k.scene("draw", () => {
         const drawButton = makeDrawButton(k)
         drawButton.onClick(() => {
-            globalState.decrementHp(5)
+            k.go("card");
         })
         k.add(drawButton) 
         const scoreLabel = k.add([
@@ -19,10 +19,21 @@ async function setupGame() {
         ]);
         k.onUpdate(() => {
             scoreLabel.text = `Enemy HP: ${globalState.enemyHp}` 
-        })
+        });
     });
 
-    k.go("draw")
+    k.scene("card", () => {
+        const card = makeCard(k)
+        k.add(card);
+        console.log(card.power);
+        console.log(card.element);
+        globalState.decrementHp(card.power);
+        card.onKeyPress('space', () => {
+            k.go("draw")
+        })
+    })
+
+    k.go("draw");
 }
 
 setupGame();
