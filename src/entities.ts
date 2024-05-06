@@ -60,6 +60,16 @@ export function makeCard(k: KaboomCtx) {
     return c;
 }
 
+export function makeEarth(k: KaboomCtx) {
+    const earth = k.make([
+        k.sprite("assets", { anim: "earth"}),
+        k.scale(scale),
+        k.pos(k.width() * 0.5, k.height() * 0.5)
+    ]);
+    
+    return earth;
+}
+
 export function makeDrawButton(k: KaboomCtx) {
     const button = k.make([
         k.rect(60 * scale, 20 * scale),
