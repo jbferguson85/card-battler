@@ -22,9 +22,10 @@ async function setupGame() {
         });
     });
 
-    k.scene("card", () => {
+    k.scene("card", async () => {
         const card = makeCard(k)
         k.add(card);
+        k.tween(card.pos, k.vec2(k.width() * 0.5, k.height() * 0.5), 0.5, (p) => card.pos = p, k.easings.linear)
         console.log(card.power);
         console.log(card.element);
         globalState.decrementHp(card.power);

@@ -47,15 +47,16 @@ export function makeCard(k: KaboomCtx) {
     const card = newCard();
     const c = k.make([
         k.rect(46 * scale, 74 * scale),
-        k.pos(k.width() * 0.5, k.height() * 0.5),
+        k.pos(k.width() * 0.5, k.height() + 160),
+        k.offscreen({destroy: true}),
         k.anchor("center"),
         k.color(k.Color.fromHex(card.color.value)),
         {
             power: card.power,
             element: getElement(card.color.name)
         }
-    ]
-    )
+    ]);
+
     return c;
 }
 
