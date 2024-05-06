@@ -39,13 +39,13 @@ export function makeCard(k: KaboomCtx, card: Card) {
     return c;
 }
 
-export function makeButton(k: KaboomCtx) {
+export function makeDrawButton(k: KaboomCtx) {
     const button = k.make([
         k.rect(60 * scale, 20 * scale),
         k.color(100, 100, 100),
         k.outline(4),
         k.area(),
-        k.pos(k.width() * 0.3, k.height() * 0.5),
+        k.pos(k.width() * 0.5, k.height() * 0.5),
         k.anchor("center")
     ]);
 
@@ -55,10 +55,6 @@ export function makeButton(k: KaboomCtx) {
     ]);
 
     button.add(label)
-
-    button.onClick(() => {
-        console.log("hello")
-    })
 
     return button
 }

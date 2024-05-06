@@ -6,7 +6,8 @@ const kConfig: KaboomOpt = {
     height: 144 * scale,
     scale,
     letterbox: true,
-    global: false
+    global: false,
+    background: [50, 50, 50]
 };
 
 export const k = kaboom(kConfig);
