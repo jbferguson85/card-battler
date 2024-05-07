@@ -90,3 +90,23 @@ export function makeDrawButton(k: KaboomCtx) {
 
     return button
 }
+
+export function makeStartButton(k: KaboomCtx) {
+    const button = k.make([
+        k.rect(60 * scale, 20 * scale),
+        k.color(100, 100, 100),
+        k.outline(4),
+        k.area(),
+        k.pos(k.width() * 0.5, k.height() * 0.7),
+        k.anchor("center")
+    ]);
+
+    const label = k.make([
+        k.text("Start"),
+        k.anchor("center")
+    ]);
+
+    button.add(label)
+
+    return button 
+}

@@ -1,4 +1,4 @@
-import { makeCard, makeDrawButton, makeElementalAnimation } from "./entities";
+import { makeCard, makeDrawButton, makeElementalAnimation, makeStartButton } from "./entities";
 import { k } from "./kaboomCtx"
 import { globalState } from "./state";
 
@@ -16,6 +16,25 @@ async function setupGame() {
             wind: { from: 15, to: 16, speed: 15, loop: true},
             water: {from: 6, to: 11, speed: 5, loop: false}
         }
+    });
+
+    k.scene("start", () => {
+        const title = k.add([
+            k.text("Creative Conditionals", {
+                size: 48
+            }),
+            k.pos(k.width() * 0.5, k.height() * 0.2),
+            k.anchor("center")
+        ]);
+
+        const startButton = makeStartButton(k);
+
+        startButton.onClick(() => {
+            title.destroy();
+            k.go("draw");
+        });
+
+        k.add(startButton);
     });
     
     k.scene("draw", () => {
@@ -46,7 +65,7 @@ async function setupGame() {
         await k.wait(2, () => {k.go("draw")})
     });
 
-    k.go("draw");
+    k.go("start");
 }
 
 setupGame();
