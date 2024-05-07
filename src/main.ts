@@ -1,4 +1,4 @@
-import { Card, makeCard, makeDrawButton, makeEarth } from "./entities";
+import { makeCard, makeDrawButton, makeElementalAnimation } from "./entities";
 import { k } from "./kaboomCtx"
 import { globalState } from "./state";
 
@@ -7,14 +7,14 @@ async function setupGame() {
     //     {power: 1, color: { name: "red", value: "#880000"}}
     // ]
     k.loadSprite("assets", "./elements.png", {
-        sliceX: 5,
+        sliceX: 6,
         sliceY: 4,
         anims: {
             fire: {from: 0, to: 2, speed: 5, loop: true},
-            earth: {from: 15, to: 19, speed: 5, loop: false },
-            wind: {from: 10, to: 12, speed: 5, loop: false},
-            tornado: { from: 12, to: 13, speed: 15, loop: true},
-            water: {from: 5, to: 9, speed: 5, loop: false}
+            earth: {from: 18, to: 23, speed: 5, loop: false },
+            notUsed: {from: 12, to: 14, speed: 5, loop: false},
+            wind: { from: 15, to: 16, speed: 15, loop: true},
+            water: {from: 6, to: 11, speed: 5, loop: false}
         }
     });
     
@@ -40,9 +40,9 @@ async function setupGame() {
         console.log(card.power);
         console.log(card.element);
         globalState.decrementHp(card.power);
+        const elementalEffect = makeElementalAnimation(k, card.element);
         await k.wait(2, () => {card.destroy()});
-        const earth = makeEarth(k);
-        k.add(earth);
+        k.add(elementalEffect);
         await k.wait(2, () => {k.go("draw")})
     });
 

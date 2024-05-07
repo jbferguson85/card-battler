@@ -60,14 +60,15 @@ export function makeCard(k: KaboomCtx) {
     return c;
 }
 
-export function makeEarth(k: KaboomCtx) {
-    const earth = k.make([
-        k.sprite("assets", { anim: "earth"}),
-        k.scale(scale),
+export function makeElementalAnimation(k: KaboomCtx, element: string) {
+    const effect = k.make([
+        k.sprite("assets", { anim: element}),
+        k.scale(4 * scale),
+        k.anchor("center"),
         k.pos(k.width() * 0.5, k.height() * 0.5)
     ]);
     
-    return earth;
+    return effect;
 }
 
 export function makeDrawButton(k: KaboomCtx) {
