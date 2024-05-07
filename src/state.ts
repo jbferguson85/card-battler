@@ -1,10 +1,10 @@
 export const globalState: {
     enemyHp: number,
-    decrementHp: (amount: number) => void,
+    decrementEnemyHp: (amount: number) => void,
     resetState: () => void;
 } = {
     enemyHp: 20,
-    decrementHp(amount: number) {
+    decrementEnemyHp(amount: number) {
         this.enemyHp -= amount;
     },
     resetState() {

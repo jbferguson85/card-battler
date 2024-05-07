@@ -55,7 +55,7 @@ async function setupGame() {
         k.tween(card.pos, k.vec2(k.width() * 0.5, k.height() * 0.5), 0.5, (p) => card.pos = p, k.easings.linear)
         console.log(card.power);
         console.log(card.element);
-        globalState.decrementHp(card.power);
+        globalState.decrementEnemyHp(card.power);
         const elementalEffect = makeElementalAnimation(k, card.element);
         await k.wait(2, () => { card.destroy() });
         k.add(elementalEffect);
@@ -88,7 +88,7 @@ async function setupGame() {
 
     });
 
-    k.go("end");
+    k.go("start");
 }
 
 setupGame();

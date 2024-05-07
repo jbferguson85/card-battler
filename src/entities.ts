@@ -57,6 +57,16 @@ export function makeCard(k: KaboomCtx) {
         }
     ]);
 
+    const powerLabel = k.make([
+        k.text(card.power.toString(), {
+            size: 24 * scale
+        }),
+        k.color(0,0,0),
+        k.anchor("center")
+    ]);
+
+    c.add(powerLabel)
+
     return c;
 }
 
