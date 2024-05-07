@@ -14,6 +14,11 @@ async function setupGame() {
             water: { from: 6, to: 11, speed: 5, loop: false }
         }
     });
+    k.loadSprite("bad-guy", "./bad-guy.png", {
+        anims: {
+            badGuy: 0
+        }
+    });
 
     k.scene("start", () => {
         const title = k.add([
@@ -28,11 +33,38 @@ async function setupGame() {
 
         startButton.onClick(() => {
             title.destroy();
-            k.go("draw");
+            k.go("encounter");
         });
 
         k.add(startButton);
     });
+
+    k.scene("encounter",  async () => {
+        const badGuy = k.make([
+            k.sprite("bad-guy", { anim: "badGuy" }),
+            k.pos(k.width() * 0.5, k.height() * 0.5),
+            k.anchor("center"),
+            k.scale(0.0001)
+        ]);
+
+        k.add(badGuy);
+
+        await k.tween(badGuy.scale, k.vec2(16), 0.5, (p) => badGuy.scale = p, k.easings.linear);
+
+        badGuy.destroy();
+
+        const encounterText = k.make([
+            k.text("You found a bad guy!"),
+            k.pos(k.width() * 0.5, k.height() * 0.5), 
+            k.anchor("center")
+        ]);
+
+        k.add(encounterText);
+
+        k.wait(2, () => {
+            k.go("draw");
+        })
+    })
 
     k.scene("draw", () => {
         const drawButton = makeDrawButton(k)
