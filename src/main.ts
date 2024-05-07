@@ -3,9 +3,6 @@ import { k } from "./kaboomCtx"
 import { globalState } from "./state";
 
 async function setupGame() {
-    // const cards: Card[] = [
-    //     {power: 1, color: { name: "red", value: "#880000"}}
-    // ]
     k.loadSprite("assets", "./elements.png", {
         sliceX: 6,
         sliceY: 4,
