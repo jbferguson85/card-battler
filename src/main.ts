@@ -22,7 +22,7 @@ async function setupGame() {
 
     k.scene("start", () => {
         const title = k.add([
-            k.text("Creative Conditionals", {
+            k.text("Card Battler", {
                 size: 48
             }),
             k.pos(k.width() * 0.5, k.height() * 0.2),
@@ -72,12 +72,18 @@ async function setupGame() {
             k.go("card");
         })
         k.add(drawButton)
+        const playerHpLabel = k.add([
+            k.text(`Player HP: ${globalState.playerHp}`),
+            k.pos(740, 24)
+        ]);
+
         const scoreLabel = k.add([
             k.text(`Enemy HP: ${globalState.enemyHp}`),
             k.pos(24)
         ]);
         k.onUpdate(() => {
-            scoreLabel.text = `Enemy HP: ${globalState.enemyHp}`
+            scoreLabel.text = `Enemy HP: ${globalState.enemyHp}`,
+            playerHpLabel.text = `Player HP: ${globalState.playerHp}`
         });
     });
 
